@@ -15,6 +15,21 @@ const fetchTasks = async() => {
 
 }
 
+const markTaskCompleted = async(id: number) => {
+
+    const res = fetch("/api/tasks/complete/${id}", {
+
+        method: "PUT",
+        headers: {"Content-Type": "application/json"}
+
+    });
+
+    if((await res).ok) throw new Error("Failed to update task");
+
+    return (await res).json();
+
+}
+
 const addNewTask = async(task: Omit<Task, "id">) => {
 
     const res = fetch("/api/tasks/add-task", {
@@ -25,7 +40,7 @@ const addNewTask = async(task: Omit<Task, "id">) => {
 
     });
 
-    if((await res).ok) throw new Error("Failed to add new task");
+    if(!(await res).ok) throw new Error("Failed to add new task");
 
     return (await res).json();
 

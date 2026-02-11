@@ -6,7 +6,7 @@ import TaskItem from "./components/taskItem";
 
 export default function TaskList(){
 
-    const { tasks, remove } = useTasks();
+    const { tasks, remove, completeTask } = useTasks();
 
     return (
 
@@ -23,7 +23,8 @@ export default function TaskList(){
                                 title={task.title} 
                                 description={task.description} 
                                 is_completed={task.is_completed} 
-                                remove={remove} 
+                                remove={remove}
+                                completeTask={completeTask}
                             />
                         ))}
                     </div>

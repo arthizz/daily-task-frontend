@@ -54,6 +54,12 @@ export function useTasks(){
 
     }
 
-    return {tasks, add, remove};
+    const completeTask = async(id: number) => {
+
+        setTasks(prev => prev.map((task) => task.id == id ? {...task, is_completed: true } : task ));
+
+    }
+
+    return {tasks, add, remove, completeTask};
 
 }
